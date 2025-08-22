@@ -1,4 +1,11 @@
--- Ghost props on physgun pickup & prevent prop throw abuse
+--[
+  Author: MethMonsignor
+  Copyright (c) 2025 Meth Monsignor, Emporium Server Owner
+  Licensed under the MIT License.
+  Free to use, modify, and distribute with attribution.
+--]
+
+-- Ghost's props on physgun pickup & prevent prop throw abuse
 hook.Add("PhysgunPickup", "Emporium_GhostOnPickup", function(ply, ent)
     if not IsValid(ent) or not ent:GetPhysicsObject():IsValid() then return end
     if ent:IsPlayer() then return end
@@ -8,14 +15,14 @@ hook.Add("PhysgunPickup", "Emporium_GhostOnPickup", function(ply, ent)
     ent:SetColor(Color(255, 255, 255, 100))
     ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER)
 
-    -- Tag for anti-throw logic
+    -- anti-throw logic
     ent._EmporiumGhosted = true
 end)
 
 hook.Add("PhysgunDrop", "Emporium_UnghostOnDrop", function(ply, ent)
     if not IsValid(ent) or not ent._EmporiumGhosted then return end
 
-    -- Restore visuals and collisions
+    -- visuals and collisions
     ent:SetRenderMode(RENDERMODE_NORMAL)
     ent:SetColor(Color(255, 255, 255, 255))
     ent:SetCollisionGroup(COLLISION_GROUP_NONE)
@@ -23,7 +30,7 @@ hook.Add("PhysgunDrop", "Emporium_UnghostOnDrop", function(ply, ent)
     ent._EmporiumGhosted = nil
 end)
 
--- Anti prop throw: freeze velocity spikes on ghosted props
+-- freeze velocity spikes on ghosted props
 hook.Add("Think", "Emporium_AntiPropThrow", function()
     for _, ent in ipairs(ents.GetAll()) do
         if ent._EmporiumGhosted and IsValid(ent:GetPhysicsObject()) then
@@ -37,3 +44,4 @@ hook.Add("Think", "Emporium_AntiPropThrow", function()
         end
     end
 end)
+
