@@ -11,5 +11,15 @@ Spawnless, lore-neutral module for Garry's Mod that ghosts props on physgun pick
 
 ## Installation
 
-Place `ghost_and_antithrow.lua` into:
+Place `ghost_and_antithrow.lua` into: lua/autorun/server
+
+## Extra info
+- Designed for EmporiumRP and DarkRP environments
+- No clientside logic
+- No entity spawns
+- Fully compatible with lore-integrated governance systems
+
+## License
+
+MIT by default. Replace with EmporiumRP license if needed.
 
