@@ -3,7 +3,7 @@
   Copyright (c) 2025 Meth Monsignor, Emporium Server Owner
   Licensed under the MIT License.
   Free to use, modify, and distribute with attribution.
-]
+--]]
 
 -- Ghost's props on physgun pickup & prevent prop throw abuse
 hook.Add("PhysgunPickup", "Emporium_GhostOnPickup", function(ply, ent)
@@ -44,5 +44,6 @@ hook.Add("Think", "Emporium_AntiPropThrow", function()
         end
     end
 end)
+
 
 
